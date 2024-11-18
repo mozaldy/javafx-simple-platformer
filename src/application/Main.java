@@ -26,7 +26,7 @@ public class Main extends Application {
         Group viewport = new Group(gameRoot);
 
         gameWorld.getDecorations().forEach(decoration -> 
-        	gameRoot.getChildren().add(decoration.getNode()));
+        	gameRoot.getChildren().add(decoration));
         	gameRoot.getChildren().add(gameWorld.getGround());
     	gameWorld.getObstacles().forEach(obstacle -> 
         	gameRoot.getChildren().add(obstacle));

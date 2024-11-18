@@ -1,23 +1,29 @@
 package application;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+public class Decoration extends GameObject2D {
+    protected boolean isAnimated;
+    protected double opacity;
+    protected int layer;
 
-class Decoration {
-    private final ImageView imageView;
-    
     public Decoration(String imageName, double x, double y, double width, double height) {
-        Image image = new Image("file:src/application/assets/" + imageName);
-        imageView = new ImageView(image);
-        imageView.setX(x);
-        imageView.setY(y);
-        imageView.setFitWidth(width);
-        imageView.setFitHeight(height);
-        imageView.setPreserveRatio(true);
-        imageView.setSmooth(true);
+        super(imageName, x, y, width, height);
+        this.isAnimated = false;
+        this.opacity = 1.0;
+        this.layer = 0;
+        initializeDecoration();
     }
-    
-    public ImageView getNode() {
-        return imageView;
+
+    protected void initializeDecoration() {
+        setPickOnBounds(false);
+        setMouseTransparent(true);
+    }
+
+    public void setLayer(int layer) {
+        this.layer = layer;
+        setViewOrder(-layer);
+    }
+
+    public int getLayer() {
+        return layer;
     }
 }

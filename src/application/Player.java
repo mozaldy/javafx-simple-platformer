@@ -7,7 +7,7 @@ class Player extends ImageView {
     private double velocityY = 0;
     private boolean isJumping = false;
     private static final double MOVE_SPEED = 5;
-    private static final double JUMP_FORCE = -18;
+    private static final double JUMP_FORCE = -20;
     private static final double GRAVITY = 1;
     private static final double PLAYER_WIDTH = 75;
     private static final double PLAYER_HEIGHT = 150;

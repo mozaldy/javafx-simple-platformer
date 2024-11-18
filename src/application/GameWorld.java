@@ -32,10 +32,10 @@ class GameWorld {
         int numberOfEnemies = (int)(worldWidth / 1000);
         for (int i = 0; i < numberOfEnemies; i++) {
             double x = 500 + i * 1000;
-            double y = worldHeight - ground.getHeight() - 40;
-            double patrolDistance = 200 + random.nextDouble() * 200;
+            double y = worldHeight - ground.getHeight() - 50;
+            double patrolDistance = 200 + random.nextDouble() * 300;
             
-            enemyList.add(new Enemy(x, y, 30, 40, patrolDistance));
+            enemyList.add(new Enemy(x, y, 45, 60, patrolDistance));
         }
         
         return enemyList;
@@ -50,7 +50,7 @@ class GameWorld {
             double x = 700 + i * 800 + random.nextDouble() * 200;
             double y = worldHeight - ground.getHeight() - 45;
             
-            obstacleList.add(new Obstacle(x, y, 50, 50));
+            obstacleList.add(new Obstacle(x, y, 50, 60));
         }
         
         return obstacleList;
@@ -74,7 +74,7 @@ class GameWorld {
             double xRand = 200 + random.nextDouble() * (worldWidth - 400);
             double yRand = worldHeight - 600 * scale;
             
-            decors.add(new MovingDecoration("cloud.png", xRand, yRand, 150 * scale, 200 * scale, 5000, 100));
+            decors.add(new MovingDecoration("cloud.png", xRand, yRand, 300 * scale, 400 * scale, 5000, 100 * scale, MovingDecoration.MovementPattern.FLOATING));
         }
         return decors;
     }
