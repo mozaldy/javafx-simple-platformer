@@ -8,52 +8,47 @@ class GameWorld {
     private final Player player;
     private final Platform ground;
     private final List<Decoration> decorations;
-    private final List<Enemy> enemies;
-    private final List<Obstacle> obstacles;
+    private final List<Hostile> hostiles;
     private final double worldWidth;
     private final double worldHeight;
+    private final Goal goal;
     private boolean gameOver = false;
+    private boolean gameWon = false;
+    
     
     public GameWorld(double width, double height) {
         this.worldWidth = width;
         this.worldHeight = height;
         
+        goal = new Goal(width - 300, height - 350);
         player = new Player(50, 100);
         ground = new Platform(0, height - 50, width, 50);
         decorations = createDecorations();
-        enemies = createEnemies();
-        obstacles = createObstacles();
+        hostiles = createHostiles();
     }
     
-    private List<Enemy> createEnemies() {
-        List<Enemy> enemyList = new ArrayList<>();
+    
+    private List<Hostile> createHostiles() {
+        List<Hostile> hostileList = new ArrayList<>();
         Random random = new Random();
         
-        int numberOfEnemies = (int)(worldWidth / 1000);
-        for (int i = 0; i < numberOfEnemies; i++) {
+        int numberOfHostiles = (int)(worldWidth / 1000);
+        for (int i = 0; i < numberOfHostiles; i++) {
+            double x = 700 + i * 800 + random.nextDouble() * 200;
+            double y = worldHeight - ground.getHeight() - 45;
+            
+            hostileList.add(new Hostile("obstacle.png", x, y, 50, 60));
+        }
+        
+        for (int i = 0; i < numberOfHostiles; i++) {
             double x = 500 + i * 1000;
             double y = worldHeight - ground.getHeight() - 50;
             double patrolDistance = 200 + random.nextDouble() * 300;
             
-            enemyList.add(new Enemy(x, y, 45, 60, patrolDistance));
+            hostileList.add(new Enemy(x, y, 45, 60, patrolDistance));
         }
         
-        return enemyList;
-    }
-    
-    private List<Obstacle> createObstacles() {
-        List<Obstacle> obstacleList = new ArrayList<>();
-        Random random = new Random();
-        
-        int numberOfObstacles = (int)(worldWidth / 1000);
-        for (int i = 0; i < numberOfObstacles; i++) {
-            double x = 700 + i * 800 + random.nextDouble() * 200;
-            double y = worldHeight - ground.getHeight() - 45;
-            
-            obstacleList.add(new Obstacle(x, y, 50, 60));
-        }
-        
-        return obstacleList;
+        return hostileList;
     }
     
     private List<Decoration> createDecorations() {
@@ -80,18 +75,19 @@ class GameWorld {
     }
     
     public void update(InputHandler input) {
-        if (!gameOver) {
+        if (!gameOver && !gameWon) {
             player.update(input, this);
             
-            for (Enemy enemy : enemies) {
-                enemy.update();
-                if (enemy.checkCollision(player)) {
-                    handlePlayerDeath();
-                }
+            if (goal.checkCollision(player)) {
+            	goal.onCollision();
+            	handleWin();
             }
             
-            for (Obstacle obstacle : obstacles) {
-                if (obstacle.checkCollision(player)) {           
+            for (Hostile hostile : hostiles) {
+            	if (hostile instanceof Enemy) {
+            		((Enemy) hostile).update();
+            	}
+                if (hostile.checkCollision(player)) {           
                     handlePlayerDeath();
                 }
             }
@@ -103,17 +99,25 @@ class GameWorld {
         player.die();
     }
     
+    private void handleWin() {
+        gameWon = true;
+    }
+    
+    
     public void resetGame() {
-        gameOver = false;
+    	gameOver = false;
+        gameWon = false;
         player.reset(50, 100);
+        goal.reset();
     }
     
     public Player getPlayer() { return player; }
     public Platform getGround() { return ground; }
     public List<Decoration> getDecorations() { return decorations; }
-    public List<Enemy> getEnemies() { return enemies; }
-    public List<Obstacle> getObstacles() { return obstacles; }
+    public List<Hostile> getHostiles() { return hostiles; }
     public double getWorldWidth() { return worldWidth; }
     public double getWorldHeight() { return worldHeight; }
     public boolean isGameOver() { return gameOver; }
+    public Goal getGoal() { return goal; }
+    public boolean isGameWon() { return gameWon; }
 }

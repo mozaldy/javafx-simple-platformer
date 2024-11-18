@@ -27,12 +27,11 @@ public class Main extends Application {
 
         gameWorld.getDecorations().forEach(decoration -> 
         	gameRoot.getChildren().add(decoration));
-        	gameRoot.getChildren().add(gameWorld.getGround());
-    	gameWorld.getObstacles().forEach(obstacle -> 
-        	gameRoot.getChildren().add(obstacle));
-    	gameWorld.getEnemies().forEach(enemy -> 
-        	gameRoot.getChildren().add(enemy));
+        gameRoot.getChildren().add(gameWorld.getGround());
+    	gameWorld.getHostiles().forEach(hostiles -> 
+        	gameRoot.getChildren().add(hostiles));
     	gameRoot.getChildren().add(gameWorld.getPlayer());
+    	gameRoot.getChildren().add(gameWorld.getGoal());
         
         Scene scene = new Scene(viewport, sceneWidth, sceneHeight, Color.SKYBLUE);
         inputHandler.setupInput(scene, () -> {

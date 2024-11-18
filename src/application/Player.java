@@ -1,9 +1,8 @@
 package application;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-class Player extends ImageView {
+class Player extends GameObject2D {
     private double velocityY = 0;
     private boolean isJumping = false;
     private static final double MOVE_SPEED = 5;
@@ -14,18 +13,7 @@ class Player extends ImageView {
     private boolean isDead = false;
     
     public Player(double x, double y) {
-        Image sprite = new Image("file:src/application/assets/player.png");
-        setImage(sprite);
-        
-        setX(x);
-        setY(y);
-        
-        setFitWidth(PLAYER_WIDTH);
-        setFitHeight(PLAYER_HEIGHT);
-        
-        setPreserveRatio(true);
-        
-        setSmooth(true);
+    	super("player.png", x, y, PLAYER_WIDTH, PLAYER_HEIGHT);  
     }
     
     public void update(InputHandler input, GameWorld gameWorld) {

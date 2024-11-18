@@ -1,6 +1,6 @@
 package application;
 
-public class Enemy extends HostileObject {
+public class Enemy extends Hostile {
 	private double startX;
     private double patrolDistance;
     private double currentDirection = 1;
