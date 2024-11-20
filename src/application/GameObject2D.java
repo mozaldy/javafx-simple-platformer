@@ -19,7 +19,7 @@ public abstract class GameObject2D extends ImageView {
 	    protected void setPosition(double x, double y) {
 	        setX(x);
 	        setY(y);
-	    }
+	    }	
 
 	    protected void setDimensions(double width, double height) {
 	        this.width = width;

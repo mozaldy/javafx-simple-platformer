@@ -17,8 +17,10 @@ public class Main extends Application {
     public void start(Stage stage) {
         double sceneWidth = 1280;
         double sceneHeight = 720;
+        Player player = new Player(50, 100);
         
         gameWorld = new GameWorld(3840, 720);
+        gameWorld.addPlayer(player);
         camera = new Camera(sceneWidth, sceneHeight);
         inputHandler = new InputHandler();
         

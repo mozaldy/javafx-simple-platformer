@@ -19,7 +19,6 @@ class Player extends GameObject2D implements SoundEmitter {
     private boolean isDead = false;
     private MediaPlayer mediaPlayer;
     
-    // Sprite animation properties
     private HashMap<String, Image[]> sprites;
     private int currentFrame = 0;
     private long lastFrameTime = 0;
@@ -37,17 +36,14 @@ class Player extends GameObject2D implements SoundEmitter {
     private void loadSprites() {
         sprites = new HashMap<>();
         
-        // Load neutral state
         sprites.put("neutral", new Image[]{
             new Image("file:src/application/assets/player/neutral.png")
         });
         
-        // Load jumping state
         sprites.put("jumping", new Image[]{
             new Image("file:src/application/assets/player/jumping.png")
         });
         
-        // Load running animation frames
         sprites.put("running", new Image[]{
             new Image("file:src/application/assets/player/running1.png"),
             new Image("file:src/application/assets/player/running2.png")

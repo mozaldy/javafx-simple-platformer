@@ -1,13 +1,11 @@
 package application;
 
 public class Decoration extends GameObject2D {
-    protected boolean isAnimated;
     protected double opacity;
     protected int layer;
 
     public Decoration(String imageName, double x, double y, double width, double height) {
         super(imageName, x, y, width, height);
-        this.isAnimated = false;
         this.opacity = 1.0;
         this.layer = 0;
         initializeDecoration();

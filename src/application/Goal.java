@@ -54,14 +54,11 @@ public class Goal extends CollidableObject implements SoundEmitter{
     
 	@Override
 	public void playSound() {
-		
 		mediaPlayer.play();
 	}
 	
 	@Override
-	public void stopSound() {
-					
+	public void stopSound() {			
 		mediaPlayer.stop();
-		
 	}
 }

@@ -24,13 +24,6 @@ public class MovingDecoration extends Decoration {
         initializeAnimation();
     }
 
-    public MovingDecoration(String imageName, double x, double y, double width, double height, 
-                          int duration, double range) {
-        this(imageName, x, y, width, height, duration, range, MovementPattern.HORIZONTAL);
-        this.duration = duration;
-        initializeAnimation();
-    }
-
     private void initializeAnimation() {
         animation = new TranslateTransition();
         animation.setNode(this);

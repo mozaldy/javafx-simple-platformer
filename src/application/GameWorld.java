@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 class GameWorld {
-    private final Player player;
+    private Player player;
     private final Platform ground;
     private final List<Decoration> decorations;
     private final List<Hostile> hostiles;
@@ -21,12 +21,14 @@ class GameWorld {
         this.worldHeight = height;
         
         goal = new Goal(width - 300, height - 350);
-        player = new Player(50, 100);
         ground = new Platform(0, height - 50, width, 50);
         decorations = createDecorations();
         hostiles = createHostiles();
     }
     
+    protected void addPlayer(Player player) {
+    	this.player = player;
+    }
     
     private List<Hostile> createHostiles() {
         List<Hostile> hostileList = new ArrayList<>();
