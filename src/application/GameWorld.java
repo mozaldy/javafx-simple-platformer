@@ -109,6 +109,8 @@ class GameWorld {
         gameWon = false;
         player.reset(50, 100);
         goal.reset();
+        goal.stopSound();
+        player.stopSound();
     }
     
     public Player getPlayer() { return player; }

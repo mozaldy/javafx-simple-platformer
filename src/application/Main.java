@@ -35,7 +35,7 @@ public class Main extends Application {
         
         Scene scene = new Scene(viewport, sceneWidth, sceneHeight, Color.SKYBLUE);
         inputHandler.setupInput(scene, () -> {
-        	if(gameWorld.isGameOver()) {
+        	if(gameWorld.isGameOver() || gameWorld.isGameWon()) {
         		gameWorld.resetGame();
         	}
         });
