@@ -68,7 +68,7 @@ class GameWorld {
         
         for (int i = 0; i < numberOfTrees * 4; i++) {
             double scale = 0.8 + random.nextDouble() * 0.4;
-            double xRand = 200 + random.nextDouble() * (worldWidth - 400);
+            double xRand = 200 + random.nextDouble() * (worldWidth - 600);
             double yRand = worldHeight - 600 * scale;
             
             decors.add(new MovingDecoration("cloud.png", xRand, yRand, 300 * scale, 400 * scale, 5000, 100 * scale, MovingDecoration.MovementPattern.FLOATING));

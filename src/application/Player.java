@@ -12,7 +12,7 @@ class Player extends GameObject2D implements SoundEmitter {
     private double velocityY = 0;
     private boolean isJumping = false;
     private static final double MOVE_SPEED = 5;
-    private static final double JUMP_FORCE = -20;
+    private static final double JUMP_FORCE = -25	;
     private static final double GRAVITY = 1;
     private static final double PLAYER_WIDTH = 100;
     private static final double PLAYER_HEIGHT = 100;
@@ -22,7 +22,7 @@ class Player extends GameObject2D implements SoundEmitter {
     private HashMap<String, Image[]> sprites;
     private int currentFrame = 0;
     private long lastFrameTime = 0;
-    private static final long FRAME_DURATION = 100_000_000; // 100ms in nanoseconds
+    private static final long FRAME_DURATION = 100_000_000;
     private String currentState = "neutral";
     private AnimationTimer animationTimer;
     
@@ -123,7 +123,7 @@ class Player extends GameObject2D implements SoundEmitter {
         setY(getY() + velocityY);
         
         if(gameWorld.isGameWon()) {
-   
+        	setState("neutral");
         }
     }
     
